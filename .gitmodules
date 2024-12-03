@@ -1,0 +1,3 @@
+[submodule "pirate-lib"]
+	path = pirate-lib
+	url = https://github.com/DangerousPrototypes/pirate-lib.git

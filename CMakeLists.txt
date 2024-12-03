@@ -1,3 +1,19 @@
+# == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==
+if(WIN32)
+    set(USERHOME $ENV{USERPROFILE})
+else()
+    set(USERHOME $ENV{HOME})
+endif()
+set(sdkVersion 1.5.1)
+set(toolchainVersion 13_2_Rel1)
+set(picotoolVersion 2.0.0)
+set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
+if (EXISTS ${picoVscode})
+    include(${picoVscode})
+endif()
+# ====================================================================================
+set(PICO_BOARD pico CACHE STRING "Board type")
+
 # Generated Cmake Pico project file
 
 cmake_minimum_required(VERSION 3.13)
@@ -29,9 +45,17 @@ add_executable(dirtyJtag
 		get_serial.c
 		cmd.c
         led.c
-)
+		#pirate-lib/pirate.c
+		pirate-lib/pirate-lib.c
+		pirate-lib/pullup.c
+		pirate-lib/bio.c
+		pirate-lib/shift.c
+		pirate-lib/spi_mutex.c
+		pirate-lib/lcd.c
+		pirate-lib/amux.c
+		)
 
-target_include_directories(dirtyJtag PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(dirtyJtag PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}pirate-lib)
 
 pico_generate_pio_header(dirtyJtag ${CMAKE_CURRENT_LIST_DIR}/jtag.pio)
 
@@ -48,6 +72,9 @@ target_link_libraries(dirtyJtag PRIVATE pico_stdlib)
 target_link_libraries(dirtyJtag PRIVATE
     hardware_pio
 	hardware_dma
+	hardware_spi
+	hardware_adc
+	hardware_uart	
 	pico_unique_id
 	tinyusb_device
 	tinyusb_board

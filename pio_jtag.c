@@ -249,6 +249,7 @@ static void init_pins(uint pin_tck, uint pin_tdi, uint pin_tdo, uint pin_tms, ui
     #elif ( BOARD_TYPE == BOARD_BUSPIRATE )
     #include "pirate-lib/pirate-lib.h"
     #include "pirate-lib/pullup.h"
+    #include "pirate-lib/bio.h"
     pirate_init();
     pullup_enable(); //we only have all or nothing for pullups
     gpio_clr_mask((1u << pin_tms) | (1u << pin_rst) | (1u << pin_trst));
@@ -256,6 +257,9 @@ static void init_pins(uint pin_tck, uint pin_tdi, uint pin_tdo, uint pin_tms, ui
     bio_set_dir(pin_tms, true);
     bio_set_dir(pin_trst, true);
     bio_set_dir(pin_rst, false); 
+    bio_set_dir(pin_tdi, true);
+    bio_set_dir(pin_tdo, false);
+    bio_set_dir(pin_tck, true);
     #else
     // emulate open drain with pull up and direction
     gpio_pull_up(pin_rst);

@@ -53,9 +53,17 @@ add_executable(dirtyJtag
 		pirate-lib/spi_mutex.c
 		pirate-lib/lcd.c
 		pirate-lib/amux.c
+		#pirate-lib/platform/bpi-rev10.c
+		#pirate-lib/platform/bpi6-rev1.c
 		)
 
-target_include_directories(dirtyJtag PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}pirate-lib)
+target_include_directories(dirtyJtag PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} 
+							${CMAKE_CURRENT_SOURCE_DIR}pirate-lib
+							${CMAKE_CURRENT_SOURCE_DIR}pirate-lib/boards
+							${CMAKE_CURRENT_SOURCE_DIR}pirate-lib/display
+							${CMAKE_CURRENT_SOURCE_DIR}pirate-lib/font
+							${CMAKE_CURRENT_SOURCE_DIR}pirate-lib/platform
+							)
 
 pico_generate_pio_header(dirtyJtag ${CMAKE_CURRENT_LIST_DIR}/jtag.pio)
 

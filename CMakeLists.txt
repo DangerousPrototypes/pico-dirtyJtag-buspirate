@@ -29,9 +29,15 @@ add_executable(dirtyJtag
 		get_serial.c
 		cmd.c
         led.c
+		pirate/pirate.c
+		pirate/bio.c
+		pirate/pullup.c
+		pirate/shift.c
 )
 
-target_include_directories(dirtyJtag PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(dirtyJtag PRIVATE 
+					${CMAKE_CURRENT_SOURCE_DIR}
+					${CMAKE_CURRENT_SOURCE_DIR}pirate)
 
 pico_generate_pio_header(dirtyJtag ${CMAKE_CURRENT_LIST_DIR}/jtag.pio)
 
@@ -48,6 +54,8 @@ target_link_libraries(dirtyJtag PRIVATE pico_stdlib)
 target_link_libraries(dirtyJtag PRIVATE
     hardware_pio
 	hardware_dma
+	hardware_adc
+	hardware_spi
 	pico_unique_id
 	tinyusb_device
 	tinyusb_board

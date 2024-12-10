@@ -40,6 +40,7 @@ static inline void jtag_set_rst(const pio_jtag_inst_t *jtag, bool value)
     /* Change the direction to out to drive pin to 0 or to in to emulate open drain */
     #if ( BOARD_TYPE == BOARD_BUSPIRATE )
     #include "pirate/pirate.h"
+    #include "pirate/bio.h"
     bio_set_dir(jtag->pin_rst, !value);
     #else
     gpio_set_dir(jtag->pin_rst, !value);

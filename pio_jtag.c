@@ -248,6 +248,9 @@ static void init_pins(uint pin_tck, uint pin_tdi, uint pin_tdo, uint pin_tms, ui
     gpio_set_dir_masked( (1u << pin_tms), 0xffffffffu);
     #elif ( BOARD_TYPE == BOARD_BUSPIRATE )
     #include "pirate/pirate.h"
+    #include "pirate/pullup.h"
+    #include "pirate/bio.h"
+    #include "pirate/shift.h"    
     pirate_init();
     pullup_enable(); //we only have all or nothing for pullups
     bio_init();

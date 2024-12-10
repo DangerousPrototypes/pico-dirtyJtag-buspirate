@@ -85,4 +85,4 @@
 //how many 595 shift registers are connected
 #define SHIFT_REG_COUNT 2
 
-#include "bio.h"
+void pirate_init(void);

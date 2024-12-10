@@ -242,17 +242,32 @@ uint8_t __time_critical_func(pio_jtag_write_tms_blocking)(const pio_jtag_inst_t 
 
 static void init_pins(uint pin_tck, uint pin_tdi, uint pin_tdo, uint pin_tms, uint pin_rst, uint pin_trst)
 {
-    #if !( BOARD_TYPE == BOARD_QMTECH_RP2040_DAUGHTERBOARD )
+    #if ( BOARD_TYPE == BOARD_QMTECH_RP2040_DAUGHTERBOARD )
+    gpio_clr_mask((1u << pin_tms));
+    gpio_init_mask((1u << pin_tms));
+    gpio_set_dir_masked( (1u << pin_tms), 0xffffffffu);
+    #elif ( BOARD_TYPE == BOARD_BUSPIRATE )
+    #include "pirate/pirate.h"
+    pirate_init();
+    pullup_enable(); //we only have all or nothing for pullups
+    bio_init();
+    gpio_clr_mask((1u << pin_tms) | (1u << pin_rst) | (1u << pin_trst));
+    gpio_init_mask((1u << pin_tms) | (1u << pin_rst) | (1u << pin_trst));
+    //outputs
+    bio_set_dir(pin_tms, true);
+    bio_set_dir(pin_trst, true);
+    bio_set_dir(pin_tdi, true);    
+    bio_set_dir(pin_tck, true);
+    //inputs
+    bio_set_dir(pin_tdo, false);
+    bio_set_dir(pin_rst, false); 
+    #else
     // emulate open drain with pull up and direction
     gpio_pull_up(pin_rst);
     gpio_clr_mask((1u << pin_tms) | (1u << pin_rst) | (1u << pin_trst));
     gpio_init_mask((1u << pin_tms) | (1u << pin_rst) | (1u << pin_trst));
     gpio_set_dir_masked( (1u << pin_tms) | (1u << pin_trst), 0xffffffffu);
     gpio_set_dir(pin_rst, false);
-    #else
-    gpio_clr_mask((1u << pin_tms));
-    gpio_init_mask((1u << pin_tms));
-    gpio_set_dir_masked( (1u << pin_tms), 0xffffffffu);
     #endif
 }
 

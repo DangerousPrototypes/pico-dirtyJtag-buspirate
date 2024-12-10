@@ -261,9 +261,11 @@ static void init_pins(uint pin_tck, uint pin_tdi, uint pin_tdo, uint pin_tms, ui
     bio_set_dir(pin_trst, true);
     bio_set_dir(pin_tdi, true);    
     bio_set_dir(pin_tck, true);
+    bio_set_dir(PIN_UART0_TX, true);
     //inputs
     bio_set_dir(pin_tdo, false);
     bio_set_dir(pin_rst, false); 
+    bio_set_dir(PIN_UART0_RX, false);
     #else
     // emulate open drain with pull up and direction
     gpio_pull_up(pin_rst);

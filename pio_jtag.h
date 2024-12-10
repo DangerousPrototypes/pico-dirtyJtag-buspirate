@@ -49,6 +49,7 @@ static inline void jtag_set_rst(const pio_jtag_inst_t *jtag, bool value)
 static inline void jtag_set_trst(const pio_jtag_inst_t *jtag, bool value)
 {
     gpio_put(jtag->pin_trst, value);
+
 }
 
 // The following APIs assume that they are called in the following order:

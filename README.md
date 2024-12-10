@@ -1,4 +1,6 @@
-# PICO-DIRTYJTAG
+# Bus Pirate PICO-DIRTYJTAG
+
+**This is a forked version of [pico-dirtyjag](https://github.com/phdussud/pico-dirtyJtag) ported the Bus Pirate 5+**
 
 This code allows the Pico to become a JTAG cable.  It uses the PIO unit to produce and capture the JTAG signals.  This is a port of the excellent [DirtyJtag project](https://github.com/jeanthom/DirtyJTAG)
 

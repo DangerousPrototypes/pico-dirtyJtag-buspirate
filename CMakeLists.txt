@@ -33,11 +33,16 @@ add_executable(dirtyJtag
 		pirate/bio.c
 		pirate/pullup.c
 		pirate/shift.c
+		pirate/lcd.c
+		pirate/display/display.c
+
 )
 
 target_include_directories(dirtyJtag PRIVATE 
 					${CMAKE_CURRENT_SOURCE_DIR}
-					${CMAKE_CURRENT_SOURCE_DIR}pirate)
+					${CMAKE_CURRENT_SOURCE_DIR}pirate
+					${CMAKE_CURRENT_SOURCE_DIR}pirate/display
+					${CMAKE_CURRENT_SOURCE_DIR}pirate/display/fonts)
 
 pico_generate_pio_header(dirtyJtag ${CMAKE_CURRENT_LIST_DIR}/jtag.pio)
 

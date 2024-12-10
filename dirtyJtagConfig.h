@@ -192,7 +192,6 @@
 #define PIN_UART0_RX    BUFIO1
 #endif // USB_CDC_UART_BRIDGE
 
-
 #endif // BOARD_TYPE
 
 #endif // DirtyJtagConfig_h

@@ -3,3 +3,4 @@
 
 void bio_init(void);
 void bio_set_dir(uint8_t bio, bool dir);
+void bio_set_buffer_dir(uint8_t bio, bool dir);

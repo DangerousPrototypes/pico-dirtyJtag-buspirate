@@ -51,6 +51,9 @@ add_executable(dirtyJtag
 		pirate/shift.c
 		pirate/lcd.c
 		pirate/display/display.c
+		pirate/psu.c
+        pirate/button.c
+        pirate/display/display.c
 
 )
 
@@ -77,6 +80,8 @@ target_link_libraries(dirtyJtag PRIVATE
 	hardware_dma
 	hardware_adc
 	hardware_spi
+	hardware_pwm
+	hardware_clocks
 	pico_unique_id
 	tinyusb_device
 	tinyusb_board

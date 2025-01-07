@@ -41,3 +41,7 @@ void bio_set_dir(uint8_t bio, bool dir) {
         gpio_set_dir(bio, dir);
     }
 }
+
+void bio_set_buffer_dir(uint8_t bio, bool dir) {
+    gpio_put(bio-8, dir);
+}

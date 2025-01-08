@@ -1,7 +1,7 @@
 /////////////////////////////////
 void lcd_configure(void);
 void lcd_clear(void);
-void ui_lcd_update(const char **hw_pin_label_ordered, const char **func_pin_label_ordered, const char **direction_pin_label_ordered);
+void ui_lcd_update(const char *app_name, const char *vout_pin_label, const char *vout_func_label, const char *vout_direction, const char **hw_pin_label_ordered, const char **func_pin_label_ordered, const char **direction_pin_label_ordered);
 void lcd_write_background(const unsigned char* image);
 void lcd_screensaver_disable(void);
 void lcd_screensaver_enable(void);

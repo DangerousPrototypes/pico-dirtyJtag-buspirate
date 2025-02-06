@@ -24,11 +24,11 @@ const char *func_pin_label_ordered[] = {
 };
 
 const char *direction_pin_label_ordered[]={
-    "<-",
     "->",
     "<-",
     "->",
     "<-",
+    "->",
     "->",
     "->",
     "->",
